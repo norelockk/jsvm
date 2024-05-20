@@ -55,7 +55,7 @@ apiRouter.post('/compile', async (req, res) => {
 
     const compiler = new Compiler(finalCode, { compress: true });
     compiler.compile().then(code => {
-      console.log(compiler.logs);
+      console.log(compiler.logs.join('\n'));
 
       return res.json({ code: code[0] });
     })
