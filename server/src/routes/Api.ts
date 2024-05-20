@@ -36,7 +36,7 @@ apiRouter.post('/compile', async (req, res) => {
   if (!vaild)
     return res.status(401).json({error: "invalid authorization key"});
 
-  const { code } = req.body;
+  const { code, is_production } = req.body;
   if (!code) return res.sendStatus(401);
 
   try {
@@ -51,7 +51,7 @@ apiRouter.post('/compile', async (req, res) => {
     });
 
     //TODO: in production, make this automatically minify code!
-    const isProduction = true;
+    const isProduction = is_production ?? true;
     const finalCode = isProduction ? minifiedCode.code : es5Code;
     //console.log(finalCode);
 
