@@ -50,19 +50,18 @@ apiRouter.post('/compile', async (req, res) => {
       }
     });
 
-    //TODO: in production, make this automatically minify code!
     const isProduction = is_production ?? true;
     const finalCode = isProduction ? minifiedCode.code : es5Code;
-    //console.log(finalCode);
 
     const compiler = new Compiler(finalCode, { compress: true });
     compiler.compile().then(code => {
-      //console.log(code[1]);
+      console.log(compiler.logs);
+
       return res.json({ code: code[0] });
     })
 
   } catch (err) {
-    return res.json({ code: ("" + err).slice(0, 200) });
+    return res.status(501).json({ error: ("" + err).slice(0, 200) });
   }
 });
 
