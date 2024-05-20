@@ -1,31 +1,30 @@
-import acorn from 'acorn';
+// import acorn from 'acorn';
+// async function lol(code: string) {
+//     let minifiedCode = await minify(code, {
+//         mangle: {
+//             properties: true,
+//             // @ts-ignore
+//             reserved: ['_$EXPORTS', /require/],
+//             toplevel: true,
+//         },
+//         compress: {
+//             passes: 20,
+//         },
+//         format: {
+//             ecma: 2020,
+//         },
+//         ecma: 2020,
+//     });
+//     console.log(minifiedCode)
+// }
+// lol(`
+// const str = Math.random() ? "require" : "require";
+// let obj = {};
+// obj[str] =  10;
+// console.log(obj);
+// `);
+
 import { minify } from 'terser';
-
-async function lol(code: string) {
-    let minifiedCode = await minify(code, {
-        mangle: {
-            properties: true,
-            // @ts-ignore
-            reserved: ['_$EXPORTS', /require/],
-            toplevel: true,
-        },
-        compress: {
-            passes: 20,
-        },
-        format: {
-            ecma: 2020,
-        },
-        ecma: 2020,
-    });
-    console.log(minifiedCode)
-}
-
-lol(`
-const str = Math.random() ? "require" : "require";
-let obj = {};
-obj[str] =  10;
-console.log(obj);
-`);
 
 export async function getCompiler(opCodes: any, bytecode: string, usedOpCodes: any) {
 
